@@ -21,6 +21,9 @@ export const store = new Vuex.Store({
         }
     },
     getters:{
-        accounts:(state)=>state.accounts
+        accounts:(state)=>{
+            if () {
+            }
+        }
     }
 })
