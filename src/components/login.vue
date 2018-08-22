@@ -25,8 +25,6 @@ export default{
     methods:{
         saveLogin(event){
             this.$store.commit("addAccount",{url:this.url,apikey:this.apikey});
-            var accts = this.$store.getters.accounts;
-            this.sync.setItem("accounts",JSON.stringify(accts));
         },
     }
 }
