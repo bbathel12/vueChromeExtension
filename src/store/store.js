@@ -21,9 +21,18 @@ export const store = new Vuex.Store({
         }
     },
     getters:{
-        accounts:(state)=>{
-            if () {
+        accounts(state){
+            // if the state.accounts is empty we need
+            // to check the localstorage, if that's not
+            // empty set accounts to that and then continue
+            // if both are empty just use an empty object
+            if (Object.keys(state.accounts).length ===0  ) {
+                let storedAccounts = JSON.parse(localStorage.getItem('accounts'));
+                if ( storedAccounts != null && storedAccounts != undefined){
+                    state.accounts = storedAccounts;
+                }
             }
+            return state.accounts;
         }
     }
 })
