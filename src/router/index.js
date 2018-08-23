@@ -24,5 +24,10 @@ export default new Router({
             name:"Summary",
             component:Summary,
         },
+        {
+            path:'/summary/',
+            name:"Summary",
+            component:Summary,
+        },
     ]
 })

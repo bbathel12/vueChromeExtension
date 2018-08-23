@@ -5,9 +5,10 @@
             <span id="icon_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" style="float: right; mar
             gin-top: 2px; cursor: pointer;" title="Settings"></span>
         </div>
-        <div id="content">
-            <metric v-for="metric in chosenAccount.data" :metric="metric"/>
-
+        <div id="content" >
+            <span v-for="account in accounts">
+                <metric v-for="metric in account.data" :metric="metric"/>
+            </span>
         </div>
         <div id="footer">
             <div id="network_name"></div>
@@ -28,17 +29,18 @@ export default{
     data(){
         return{
             endpoint:"_services/dashboard_mobile.php",
+            accounts:[],
         }
     },
-    mounted(){
-        this.getData();
+    created(){
+        this.getData()
     },
     methods:{
         getData(){
             // save a reference to the app
             let app = this;
             // get proper account
-            let account   = app.chosenAccount;
+            let account   = app.chosenAccount();
             // create the request with proper headers
             let request   = axios.create({
                 headers:{
@@ -56,6 +58,8 @@ export default{
                 body
             ).then( function(response){
                 app.saveAccountData(account,response.data);
+                console.log(app.chosenAccount());
+                app.accounts = [app.chosenAccount()];
             }).catch( function(response){
                 console.log("FAIL: "+ response)
             });
@@ -65,20 +69,23 @@ export default{
                 "addAccount",
                 Object.assign(account,data)
             );
-        }
-    },
-    computed:{
-        accounts(){
+        },
+        allAccounts(){
             return this.$store.getters.accounts;
         },
         firstAccount(){
-            return this.$store.getters.accounts;
+            let key = Object.keys(this.allAccounts())[0];
+            return this.allAccounts()[key];
         },
         accountId(){
             return this.$route.params.accountid;
         },
         chosenAccount(){
-            return this.$store.getters.accounts[this.accountId];
+            if( this.accountId() != undefined ){
+                return this.allAccounts()[this.accountId];
+            }else{
+                return this.firstAccount();
+            }
         },
     },
 }

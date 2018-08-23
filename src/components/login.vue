@@ -53,7 +53,7 @@ export default{
     methods:{
         saveLogin(event){
             this.$store.commit("addAccount",{url:this.url,apikey:this.apikey});
-            this.resetLogin();
+            this.summary();
         },
         resetLogin(){
             //resets form with original data
@@ -61,6 +61,9 @@ export default{
                 url:"",
                 apikey:"",
             })
+        },
+        summary(){
+            this.$router.push("/summary/");
         },
     }
 }
