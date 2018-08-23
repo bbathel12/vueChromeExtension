@@ -1,0 +1,25 @@
+{
+
+    "manifest_version": 2,
+    "name": "Network Stats",
+    "short_name": "Affiliates",
+    "version": "1.1.7",
+
+    "author": "HitPath Development",
+
+    "browser_action": {
+        "default_icon": "images/extension-icon-48x48.png",
+        "default_popup": "index.html/#/"
+    },
+
+    "description": "A browser extension for Affiliates to view their current stats for the month.",
+    "icons": {
+        "16": "images/extension-icon.png",
+        "48": "images/extension-icon-48x48.png"
+    },
+
+    "permissions": [ "<all_urls>", "http://*/", "https://*/", "storage", "activeTab" ],
+
+    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
+
+}
