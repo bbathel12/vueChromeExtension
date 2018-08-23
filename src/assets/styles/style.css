@@ -1,0 +1,228 @@
+/**
+ * ***************************************
+ * DEFAULTS
+ * ***************************************
+ */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 12px;
+    background-color: #FFFFFF;
+}
+
+/**
+ * ***************************************
+ * LAYOUT
+ * ***************************************
+ */
+#container {
+    width: 448px;
+}
+
+#header {
+    background-color: #F0F0F0;
+    color: #606060;
+    border-bottom: 1px solid #686868;
+    padding: 4px 4px 4px 4px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#content {
+    position: relative;
+    width: auto;
+    overflow: hidden;
+    min-height: 200px;
+    background-color: #FFFFFF;
+    padding: 4px 0px 0px 4px;
+}
+
+.content_bump {
+    padding-right: 4px !important;
+}
+
+.glyphicon_bump {
+    margin-right: 10px;
+}
+
+#footer {
+    height: 30px;
+    padding: 6px 4px 4px 4px;
+}
+
+#footer > div[id=network_name] {
+    float: left;
+    font-size: .8em;
+    color: #737D84;
+}
+
+#footer > div[id=network_login] {
+    display: none;
+    float: left;
+    margin-left: 6px;
+    margin-top: -2px;
+    font-size: 1.1em;
+    color: #737D84;
+}
+
+#footer > div[id=last_update] {
+    float: right;
+    font-size: .8em;
+    color: #000000;
+    font-weight: bold;
+}
+
+#footer > div[id=general_info] {
+    font-size: .8em;
+    color: #737D84;
+    text-align: center;
+}
+
+/**
+ * ***************************************
+ * METRICS
+ * ***************************************
+ */
+.metric {
+    float: left;
+    height: 60px;
+    border-right: 4px solid #FFFFFF;
+    border-bottom: 4px solid #FFFFFF;
+}
+
+.metric_gradient {
+    background: -webkit-linear-gradient(top, #e3e8ed 0%,#c7cbcc 100%);
+}
+
+/**
+ * ***************************************
+ * SMALL METRICS
+ * ***************************************
+ */
+.metric_small {
+    width: 148px;
+}
+
+.metric_small > div[class=metric_label] {
+    color: #737D84;
+    font-size: .9em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 3px;
+}
+
+.metric_small > div[class=metric_value] {
+    color: #000000;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+}
+
+/**
+ * ***************************************
+ * MEDIUM METRICS
+ * ***************************************
+ */
+.metric_medium {
+    width: 50%;
+    font-size: 1.5em;
+    padding-top: 13px;
+    text-align: center;
+}
+
+.metric_medium > span[class=metric_label] {
+    font-size: .9em;
+    color: #737D84;
+    text-transform: uppercase;
+}
+
+.metric_medium > span[class=metric_value] {
+    font-size: .9em;
+    color: #000000;
+    font-weight: bold;
+}
+
+/**
+ * ***************************************
+ * LARGE METRICS
+ * ***************************************
+ */
+.metric_large {
+    width: 100%;
+    font-size: 1.5em;
+    padding-top: 13px;
+    text-align: center;
+}
+
+.metric_large > span[class=metric_label] {
+    font-size: .9em;
+    color: #737D84;
+    text-transform: uppercase;
+}
+
+.metric_large > span[class=metric_value] {
+    font-size: .9em;
+    color: #000000;
+    font-weight: bold;
+}
+
+
+/**
+ * ***************************************
+ * GRAPH METRICS
+ * ***************************************
+ */
+.metric_graph {
+    height: 100px;
+}
+
+
+/**
+ * ***************************************
+ * SETTINGS
+ * ***************************************
+ */
+#settings {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: .9em;
+}
+
+#settings > div[class=settings_label] {
+    float: left;
+    width: 120px;
+    text-align: right;
+    color: #737D84;
+}
+
+#settings > div[class=settings_value] {
+    max-width: 250px;
+    word-wrap:break-word;
+    float: left;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+#settings_instructions {
+    margin-top: 36px;
+    text-align: center;
+}
+
+/**
+ * ***************************************
+ * GENERAL
+ * ***************************************
+ */
+
+.clear_div {
+    clear: both;
+}
+
+a {
+    color: #1F45FC !important;
+    font-weight: bold;
+    text-decoration: none !important;
+}
