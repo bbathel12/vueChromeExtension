@@ -4,13 +4,15 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
-    sync: localStorage,
+    sync: sessionStorage,
     state:{
-        accounts:{}
+        accounts:JSON.parse(localStorage.getItem('accounts')) || {}
     },
     mutations:{
         addAccount(state,account){
             state.accounts[account.apikey] = account
+            console.log("saving an account :");
+            console.log(account,state.accounts);
             localStorage.setItem(
                 "accounts",
                 JSON.stringify(state.accounts)
@@ -32,6 +34,7 @@ export const store = new Vuex.Store({
                     state.accounts = storedAccounts;
                 }
             }
+            console.log("getting accounts", state.accounts)
             return state.accounts;
         }
     }
