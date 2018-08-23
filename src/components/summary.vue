@@ -6,32 +6,8 @@
             gin-top: 2px; cursor: pointer;" title="Settings"></span>
         </div>
         <div id="content">
+            <metric v-for="metric in chosenAccount.data" :metric="metric"/>
 
-            <div id="content">
-                <div class="metric metric_small">
-                    <img src="https://logos.hitpath.com/a41b5fa679733fb0cc71f952586b4f02.png">
-                </div>
-                <div class="metric metric_small metric_gradient">
-                    <div class="metric_label">Hits
-                    </div>
-                    <div class="metric_value">127
-                    </div>
-                </div>
-                <div class="metric metric_small metric_gradient">
-                    <div class="metric_label">Sales
-                    </div>
-                    <div class="metric_value">63
-                    </div>
-                </div>
-                <div class="metric metric_medium metric_gradient"><span class="metric_label">Conversion </span><span class="metric_value">49.61%</span>
-                </div>
-                <div class="metric metric_medium metric_gradient"><span class="metric_label">EPC </span><span class="metric_value">$5.48</span>
-                </div>
-                <div class="metric metric_large metric_gradient"><span class="metric_label">Commission </span><span class="metric_value">$696.00</span>
-                </div>
-                <div class="clear_div">
-                </div>
-            </div>
         </div>
         <div id="footer">
             <div id="network_name"></div>
@@ -45,8 +21,10 @@
 
 <script>
 import axios from "axios"
+import metric from "@/components/metric";
 export default{
     name:"summary",
+    components:{metric},
     data(){
         return{
             endpoint:"_services/dashboard_mobile.php",
@@ -98,10 +76,10 @@ export default{
         },
         accountId(){
             return this.$route.params.accountid;
-        }
+        },
         chosenAccount(){
             return this.$store.getters.accounts[this.accountId];
-        }
+        },
     },
 }
 

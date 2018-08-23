@@ -1,7 +1,7 @@
 <template>
     <div v-bind:class="[
         {metric:true},
-        {metric:gradient},
+        {metric_gradient:true},
         {metric_small:isSmall},
         {metric_medium:isMedium},
         {metric_large:isLarge}
@@ -22,7 +22,18 @@ export default{
     name:"metric",
     props:["metric"],
     data(){
-        return {},
+        return {}
+    },
+    computed:{
+        isSmall(){
+            return this.metric.size === "small";
+        },
+        isMedium(){
+            return this.metric.size === "medium";
+        },
+        isLarge(){
+            return this.metric.size === "large";
+        },
     },
 }
 </script>
