@@ -52,8 +52,16 @@ export default{
     },
     methods:{
         saveLogin(event){
+            this.url = this.addHttpIfMissing(this.url);
             this.$store.commit("addAccount",{url:this.url,apikey:this.apikey});
             this.summary();
+        },
+        addHttpIfMissing(url){
+            let regex = /^http:\/\//;
+            if (!regex.test(url))
+                return "http://"+url;
+            else
+                return url;
         },
         resetLogin(){
             //resets form with original data
