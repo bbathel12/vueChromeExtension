@@ -81,8 +81,8 @@ export default{
                     {action: "import_creds"},
                     function(response) {
                         console.log(response);
-//                        app.url = response.affiliateurl
-//                        app.apikey = response.apikey
+                        app.url = response.affiliateurl
+                        app.apikey = response.apikey
                     }
                 );
             });

@@ -4,8 +4,8 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
         // Call the specified callback, passing
         // the web-page's DOM content as argument
         sendResponse({
-            'affiliateurl':document.getElementById("affiliateurl"),
-            'apikey':document.getElementById("apikey"),
+            'affiliateurl':document.getElementById("affiliateurl").value,
+            'apikey':document.getElementById("apikey").value,
         });
     }
 });
