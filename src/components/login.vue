@@ -21,8 +21,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button id="button_import" type="button" class="btn btn-default" style="color: #D95E25; display: none;">
-                            <span class="glyphicon glyphicon-export" aria-hidden="true"></span> Import
+                        <button id="button_import" type="button" class="btn btn-default" style="color: #317dcd;">
+                            <span class="glyphicon glyphicon-export" aria-hidden="true" @click="importCreds()">Import</span>
                         </button>
                         <button @click="saveLogin" id="button_login"  class="btn btn-default" style="float: right;">Login</button>
                         <button @click="resetLogin" class="btn btn-default" style="float: right; margin-right: 6px;">Reset</button>
@@ -58,6 +58,7 @@ export default{
         saveLogin(event){
             this.url = this.addHttpIfMissing(this.url);
             this.$store.commit("addAccount",{url:this.url,apikey:this.apikey});
+            this.getData();
             this.summary()
         },
         addHttpIfMissing(url){
@@ -75,11 +76,23 @@ export default{
             })
         },
         summary(){
-            console.log("run summary");
             this.$router.push("/summary/");
         },
         chosenAccount(){
             return this.allAccounts()[this.apikey];
+        },
+        importCreds(){
+            let app = this;
+            chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+                chrome.tabs.sendMessage(
+                    tabs[0].id,
+                    {action: "import_creds"},
+                    function(response) {
+                        app.url = response.affiliateurl
+                        app.apikey = response.apikey
+                    }
+                );
+            });
         },
     }
 }

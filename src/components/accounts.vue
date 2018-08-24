@@ -20,7 +20,6 @@ export default{
     },
     computed:{
         accounts(){
-            console.log("gettin' accounts");
             return this.$store.getters.accounts;
         },
     }

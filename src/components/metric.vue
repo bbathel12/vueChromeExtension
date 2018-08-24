@@ -1,38 +1,40 @@
 <template>
-    <div v-bind:class="[
+    <span>
+        <div v-for="metric in data.data" v-bind:class="[
         {metric:true},
         {metric_gradient:true},
-        {metric_small:isSmall},
-        {metric_medium:isMedium},
-        {metric_large:isLarge}
+        {metric_small:isSmall(metric)},
+        {metric_medium:isMedium(metric)},
+        {metric_large:isLarge(metric)}
         ]">
 
-        <div class="metric_label" v-text="metric.label">
-        </div>
+            <div class="metric_label" v-text="metric.label">
+            </div>
 
-        <div class="metric_value" v-text="metric.value">
-        </div>
+            <div class="metric_value" v-text="metric.value">
+            </div>
 
-    </div>
+        </div>
+    </span>
 
 </template>
 
 <script>
 export default{
     name:"metric",
-    props:["metric"],
+    props:["data"],
     data(){
         return {}
     },
-    computed:{
-        isSmall(){
-            return this.metric.size === "small";
+    methods:{
+        isSmall(metric){
+            return metric.size === "small";
         },
-        isMedium(){
-            return this.metric.size === "medium";
+        isMedium(metric){
+            return metric.size === "medium";
         },
-        isLarge(){
-            return this.metric.size === "large";
+        isLarge(metric){
+            return metric.size === "large";
         },
     },
 }

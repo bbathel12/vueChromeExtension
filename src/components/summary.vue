@@ -5,8 +5,8 @@
             <span id="icon_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" style="float: right; mar
             gin-top: 2px; cursor: pointer;" title="Settings"></span>
         </div>
-        <div id="content" v-for="account in showAccounts">
-            <metric  v-for="metric in account.data" :metric="metric"/>
+        <div id="content" >
+            <metric :data="chosenAccount"/>
         </div>
         <div id="footer">
             <div id="network_name" v-text="networkName"></div>
@@ -14,7 +14,8 @@
             info" class="glyphicon glyphicon-log-in" aria-hidden="true" style="cursor: pointer;" title="Login"></span></a></div>
             <div id="last_update">Last Updated: <span id="last_update_timestamp">-</span></div>
             <div class="clear_div"></div>
-            <accountDropDown @linkfollow="getNewData" :accounts="accounts" />
+            {{allNamedAccounts}}
+            <accountDropDown @linkfollow="getNewData" :accounts="allNamedAccounts" />
             <router-link to="/" text="login">Login</router-link>
         </div>
         
@@ -32,33 +33,24 @@ export default{
     mixins:[dataGetter],
     data(){
         return{
-            showAccounts:[]
         }
     },
     beforeMount(){
         this.getData()
-        this.showAccounts = [this.chosenAccount()];
-        console.log(this.accounts);
-        console.log("accounts set");
     },
     methods:{
         getNewData(){
             this.getData();
-            this.showAccounts = [this.chosenAccount()];
         },
     },
     computed:{
         networkName(){
             let account = this.account;
             if( account != undefined){
-                console.log("NETWORK NAME",account.network_name);
                 return account.network_name;
             }
             return "";
         },
-        accounts(){
-            return this.allAccounts();
-        }
     }
 }
 

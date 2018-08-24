@@ -2,7 +2,8 @@ import axios from 'axios';
 export const dataGetter = {
     data(){
         return {
-            endpoint:'_services/dashboard_mobile.php'
+            endpoint:'_services/dashboard_mobile.php',
+            accounts:[],
         }
     },
     methods:{
@@ -10,7 +11,7 @@ export const dataGetter = {
             // save a reference to the app
             let app = this;
             // get proper account
-            let accounts   = app.allAccounts();
+            let accounts   = this.allAccounts();
             // create the request with proper headers
             let request   = axios.create({
                 headers:{
@@ -32,7 +33,9 @@ export const dataGetter = {
                 }).catch( function(response){
                     console.log("FAIL: "+ response)
                 });
+                
             }
+            this.accounts[0] = this.chosenAccount;
         },
         saveAccountData(account,data){
             this.$store.commit(
@@ -50,6 +53,8 @@ export const dataGetter = {
         accountId(){
             return this.$route.params.accountid;
         },
+    },
+    computed:{
         chosenAccount(){
             if( this.accountId() != undefined ){
                 let accounts = this.allAccounts();
@@ -59,5 +64,16 @@ export const dataGetter = {
                 return this.firstAccount();
             }
         },
+        allNamedAccounts(){
+            let accounts = this.allAccounts();
+            let clean = [];
+            for(let account in accounts){
+                if( accounts[account] != undefined){
+                    clean.push(accounts[account]);
+                }
+            }
+            return clean;
+        },
+
     },
 }
