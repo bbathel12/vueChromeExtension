@@ -9,7 +9,7 @@ import "./assets/styles/jquery/jquery.faloading.min.css";
 import "./assets/styles/plugins/font-awesome.min.css";
 import "./assets/styles/bootstrap/bootstrap.css";
 import "./assets/styles/bootstrap/bootstrap-theme.css";
-
+Vue.config.devtools = true
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -5,10 +5,8 @@
             <span id="icon_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" style="float: right; mar
             gin-top: 2px; cursor: pointer;" title="Settings"></span>
         </div>
-        <div id="content" >
-            <span v-for="account in accounts">
-                <metric v-for="metric in account.data" :metric="metric"/>
-            </span>
+        <div id="content" v-for="account in showAccounts">
+            <metric  v-for="metric in account.data" :metric="metric"/>
         </div>
         <div id="footer">
             <div id="network_name" v-text="networkName"></div>
@@ -16,7 +14,7 @@
             info" class="glyphicon glyphicon-log-in" aria-hidden="true" style="cursor: pointer;" title="Login"></span></a></div>
             <div id="last_update">Last Updated: <span id="last_update_timestamp">-</span></div>
             <div class="clear_div"></div>
-            <accountDropDown @linkfollow="getData" :accounts="allAccounts()" />
+            <accountDropDown @linkfollow="getNewData" :accounts="accounts" />
             <router-link to="/" text="login">Login</router-link>
         </div>
         
@@ -27,81 +25,40 @@
 import axios from "axios"
 import metric from "@/components/metric";
 import accountDropDown from "@/components/accountDropDown";
+import {dataGetter} from "@/datagetter/dataGetter";
 export default{
     name:"summary",
     components:{metric,accountDropDown},
+    mixins:[dataGetter],
     data(){
         return{
-            endpoint:"_services/dashboard_mobile.php",
-            accounts:[],
+            showAccounts:[]
         }
     },
-    created(){
+    beforeMount(){
         this.getData()
+        this.showAccounts = [this.chosenAccount()];
+        console.log(this.accounts);
+        console.log("accounts set");
     },
     methods:{
-        getData(){
-            // save a reference to the app
-            let app = this;
-            // get proper account
-            let account   = app.chosenAccount();
-            // create the request with proper headers
-            let request   = axios.create({
-                headers:{
-                    "content-type":"application/x-www-form-urlencoded"
-                }
-            });
-
-            // build request body using javascript fordata
-            let body = new FormData();
-            body.set("apikey",account.apikey);
-            body.set("func","plugin_data");
-            // post the request
-            request.post(
-                account.url+"/"+app.endpoint,
-                body
-            ).then( function(response){
-                app.saveAccountData(account,response.data);
-                app.accounts = [app.chosenAccount()];
-            }).catch( function(response){
-                console.log("FAIL: "+ response)
-            });
-        },
-        saveAccountData(account,data){
-            this.$store.commit(
-                "addAccount",
-                Object.assign(account,data)
-            );
-        },
-        allAccounts(){
-            return this.$store.getters.accounts;
-        },
-        firstAccount(){
-            let key = Object.keys(this.allAccounts())[0];
-            return this.allAccounts()[key];
-        },
-        accountId(){
-            return this.$route.params.accountid;
-        },
-        chosenAccount(){
-            if( this.accountId() != undefined ){
-                let accounts = this.allAccounts();
-
-                return this.allAccounts()[this.accountId()];
-            }else{
-                return this.firstAccount();
-            }
+        getNewData(){
+            this.getData();
+            this.showAccounts = [this.chosenAccount()];
         },
     },
     computed:{
         networkName(){
-            let account = this.accounts[0];
+            let account = this.account;
             if( account != undefined){
                 console.log("NETWORK NAME",account.network_name);
                 return account.network_name;
             }
             return "";
         },
+        accounts(){
+            return this.allAccounts();
+        }
     }
 }
 
