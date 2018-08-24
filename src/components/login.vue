@@ -52,15 +52,12 @@ export default{
         }
     },
     created(){
-        this.testTabs();
     },
     mixins:[dataGetter],
     methods:{
         saveLogin(event){
             this.url = this.addHttpIfMissing(this.url);
             this.$store.commit("addAccount",{url:this.url,apikey:this.apikey});
-            let app = this;
-            this.getData()
             this.summary()
         },
         addHttpIfMissing(url){
@@ -84,11 +81,6 @@ export default{
         chosenAccount(){
             return this.allAccounts()[this.apikey];
         },
-        testTabs(){
-            chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-                console.log(tabs[0])
-            });
-        }
     }
 }
 </script>
