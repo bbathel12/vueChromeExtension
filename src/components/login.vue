@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="container">
-            <div id="header"><img style="height: 20px; width:20px" src="/images/extension-icon-48x48.png"> Login</div>
+            <div id="header"><img style="height: 20px; width:20px" src="./images/extension-icon-48x48.png"> Login</div>
             <div id="content" class="content_bump">
 
 
@@ -32,7 +32,7 @@
 
             </div>
             <div id="footer">
-                <div id="general_info">For assistance logging in, please click the <img src="/images/icon_gear.png"/> gear icon in your footer.</div>
+                <div id="general_info">For assistance logging in, please click the <img src="./images/icon_gear.png"/> gear icon in your footer.</div>
                 <div class="clear_div"></div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <template>
     <div id="container" >
         <div id="header">
-            <img src="/images/extension-icon.png"/> Monthly Network Stats
+            <img src="./images/extension-icon.png"/> Monthly Network Stats
             <span id="icon_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" style="float: right; mar
             gin-top: 2px; cursor: pointer;" title="Settings"></span>
         </div>
