@@ -6,16 +6,15 @@
             gin-top: 2px; cursor: pointer;" title="Settings"></span>
         </div>
         <div id="content" >
-            <metric :data="chosenAccount"/>
+            <metric />
         </div>
         <div id="footer">
             <div id="network_name" v-text="networkName"></div>
             <div id="network_login"><a href="" target="_blank" style="outline: none; color: black"><span id="icon_
             info" class="glyphicon glyphicon-log-in" aria-hidden="true" style="cursor: pointer;" title="Login"></span></a></div>
-            <div id="last_update">Last Updated: <span id="last_update_timestamp">-</span></div>
+            <div id="last_update">Last Updated: <span id="last_update_timestamp" v-text="chosenAccount.timestamp"></span></div>
             <div class="clear_div"></div>
-            {{allNamedAccounts}}
-            <accountDropDown @linkfollow="getNewData" :accounts="allNamedAccounts" />
+            <accountDropDown @linkfollow="getNewData"  />
             <router-link to="/" text="login">Login</router-link>
         </div>
         
@@ -35,13 +34,10 @@ export default{
         return{
         }
     },
-    beforeMount(){
-        this.getData()
-    },
     methods:{
         getNewData(){
             this.getData();
-        },
+        }
     },
     computed:{
         networkName(){

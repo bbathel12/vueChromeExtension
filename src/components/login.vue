@@ -26,6 +26,9 @@
                         </button>
                         <button @click="saveLogin" id="button_login"  class="btn btn-default" style="float: right;">Login</button>
                         <button @click="resetLogin" class="btn btn-default" style="float: right; margin-right: 6px;">Reset</button>
+                        <router-link :to="{name:'Summary'}">
+                            <button  class="btn btn-default" style="float: right; margin-right: 6px;">Account Summary</button>
+                        </router-link>
                     </div>
                 </div>
 
@@ -57,9 +60,18 @@ export default{
     methods:{
         saveLogin(event){
             this.url = this.addHttpIfMissing(this.url);
-            this.$store.commit("addAccount",{url:this.url,apikey:this.apikey});
-            this.getData();
-            this.summary()
+            let app = this;
+            app.getAccountData(app.url,app.apikey)
+            .then(
+                function(data){
+                    console.log(data);
+                    app.summary();
+                }
+            ).catch(function(data){
+                console.log("Here's your problem:",data)
+                alert("an error has occured please check url and api key");
+
+            })
         },
         addHttpIfMissing(url){
             let regex = /^http:\/\//;
@@ -78,9 +90,6 @@ export default{
         summary(){
             this.$router.push("/summary/");
         },
-        chosenAccount(){
-            return this.allAccounts()[this.apikey];
-        },
         importCreds(){
             let app = this;
             chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
@@ -94,10 +103,12 @@ export default{
                 );
             });
         },
-    }
+    },
+    computed:{
+    },
 }
 </script>
 
 <style scoped>
 
-</style>
+</style

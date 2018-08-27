@@ -2,7 +2,7 @@
     <span>
         <select @change="followLink" >
             <option
-                v-for="account in accounts"
+                v-for="account in allNamedAccounts"
                 v-if="account.network_name != undefined"
                 :value="account.apikey"
                 v-text="account.network_name">
@@ -12,12 +12,14 @@
 </template>
 
 <script>
+import {dataGetter} from "@/datagetter/dataGetter";
+
 export default{
     name:"accountDropDown",
+    mixins:[dataGetter],
     data(){
         return {};
     },
-    props:["accounts"],
     methods:{
         followLink(e){
             this.$router.push(

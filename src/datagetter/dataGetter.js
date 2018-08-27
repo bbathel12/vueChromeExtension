@@ -7,35 +7,46 @@ export const dataGetter = {
         }
     },
     methods:{
-        getData(){
+        getAccountData(apiUrl,apiKey) {
+            if(apiUrl == undefined || apiKey == undefined){
+                alert("API URL and API Key are required");
+                return false;
+            }
             // save a reference to the app
             let app = this;
-            // get proper account
-            let accounts   = this.allAccounts();
+            // build request body using javascript fordata
+            let body = new FormData();
             // create the request with proper headers
             let request   = axios.create({
                 headers:{
                     "content-type":"application/x-www-form-urlencoded"
                 }
             });
-            for(let accountid in accounts){
-                let _account = accounts[accountid]
-                // build request body using javascript fordata
-                let body = new FormData();
-                body.set("apikey",_account.apikey);
-                body.set("func","plugin_data");
-                // post the request
+            body.set("apikey",apiKey);
+            body.set("func","plugin_data");
+            // post the request
+            return new Promise(function(resolve,reject){
                 request.post(
-                    _account.url+"/"+app.endpoint,
+                    apiUrl+"/"+app.endpoint,
                     body
                 ).then( function(response){
-                    app.saveAccountData(_account,response.data);
+                    app.saveAccountData({
+                        'apikey':apiKey,
+                        'url':apiUrl,
+                    },response.data);
+                    resolve(response.data);
                 }).catch( function(response){
-                    console.log("FAIL: "+ response)
-                });
-                
+                    return false;
+                })
+            })
+        },
+        getData(){
+            // get proper account
+            let accounts   = this.allAccounts();
+            for(let accountid in accounts){
+                let _account = accounts[accountid]
+                this.getAccountData(_account.url,_account.apikey);
             }
-            this.accounts[0] = this.chosenAccount;
         },
         saveAccountData(account,data){
             this.$store.commit(
@@ -58,7 +69,6 @@ export const dataGetter = {
         chosenAccount(){
             if( this.accountId() != undefined ){
                 let accounts = this.allAccounts();
-
                 return this.allAccounts()[this.accountId()];
             }else{
                 return this.firstAccount();

@@ -1,6 +1,9 @@
 <template>
     <span>
-        <div v-for="metric in data.data" v-bind:class="[
+        <div class="metric  metric_small">
+            <img :src="image">
+        </div>
+        <div v-for="metric in metrics" v-bind:class="[
         {metric:true},
         {metric_gradient:true},
         {metric_small:isSmall(metric)},
@@ -20,9 +23,12 @@
 </template>
 
 <script>
+import {dataGetter} from "@/datagetter/dataGetter";
 export default{
     name:"metric",
-    props:["data"],
+    mixins:[dataGetter],
+    beforeMount(){
+    },
     data(){
         return {}
     },
@@ -35,6 +41,14 @@ export default{
         },
         isLarge(metric){
             return metric.size === "large";
+        },
+    },
+    computed:{
+        metrics(){
+            return this.chosenAccount.data;
+        },
+        image(){
+            return this.chosenAccount.url_logo;
         },
     },
 }
