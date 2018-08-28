@@ -22,7 +22,9 @@
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button id="button_import" type="button" class="btn btn-default" style="color: #317dcd;">
-                            <span class="glyphicon glyphicon-export" aria-hidden="true" @click="importCreds()">Import</span>
+                            <span class="glyphicon glyphicon-export" aria-hidden="true" @click="importCreds()">
+                                <span style="font-size:4px;">&nbsp;</span>Import
+                            </span>
                         </button>
                         <button @click="saveLogin" id="button_login"  class="btn btn-default" style="float: right;">Login</button>
                         <button @click="resetLogin" class="btn btn-default" style="float: right; margin-right: 6px;">Reset</button>
@@ -97,8 +99,10 @@ export default{
                     tabs[0].id,
                     {action: "import_creds"},
                     function(response) {
-                        app.url = response.affiliateurl
-                        app.apikey = response.apikey
+                        if (response){
+                            app.url = response.affiliateurl
+                            app.apikey = response.apikey
+                        }
                     }
                 );
             });
