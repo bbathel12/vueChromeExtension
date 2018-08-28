@@ -8,8 +8,7 @@ export const dataGetter = {
     },
     methods:{
         getAccountData(apiUrl,apiKey) {
-            if(apiUrl == undefined || apiKey == undefined){
-                alert("API URL and API Key are required");
+            if(apiUrl == undefined || apiKey == undefined || apiUrl == 'http://' || apiKey == ''){
                 return false;
             }
             // save a reference to the app
@@ -30,13 +29,17 @@ export const dataGetter = {
                     apiUrl+"/"+app.endpoint,
                     body
                 ).then( function(response){
-                    app.saveAccountData({
-                        'apikey':apiKey,
-                        'url':apiUrl,
-                    },response.data);
-                    resolve(response.data);
+                    if (response.data.length != 2){
+                        app.saveAccountData({
+                            'apikey':apiKey,
+                            'url':apiUrl,
+                        },response.data);
+                        resolve(response.data);
+                    }
+                    else
+                        reject('Credentials are incorrect.');
                 }).catch( function(response){
-                    return false;
+                    reject('Credentials are incorrect.');
                 })
             })
         },
