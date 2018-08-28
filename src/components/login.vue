@@ -19,6 +19,9 @@
                         <span class="glyphicon form-control-feedback glyphicon_bump" aria-hidden="true"></span>
                     </div>
                 </div>
+                <div v-if="error != ''">
+                    <span v-text="error" style="color:red; margin-left:10px; "></span>
+                </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button id="button_import" type="button" class="btn btn-default" style="color: #317dcd;">
@@ -26,11 +29,9 @@
                                 <span style="font-size:4px;">&nbsp;</span>Import
                             </span>
                         </button>
+                        <button @click="resetLogin" class="btn btn-default" style="margin-left: 2px;">Reset</button>
                         <button @click="saveLogin" id="button_login"  class="btn btn-default" style="float: right;">Login</button>
-                        <button @click="resetLogin" class="btn btn-default" style="float: right; margin-right: 6px;">Reset</button>
-                        <router-link :to="{name:'Summary'}">
-                            <button  class="btn btn-default" style="float: right; margin-right: 6px;">Account Summary</button>
-                        </router-link>
+                        <button @click="accountSummaryButton" class="btn btn-default" style="float: right; margin-right: 6px;">Account Summary</button>
                     </div>
                 </div>
 
@@ -54,26 +55,37 @@ export default{
         return {
         url:'',
         apikey:'',
+        error:'',
         }
     },
     created(){
     },
     mixins:[dataGetter],
     methods:{
+        accountSummaryButton(){
+            if (localStorage.getItem("accounts") == null) {
+                this.error = 'There are no available accounts.';
+            }
+            else
+                this.$router.push("/summary/");
+        },
         saveLogin(event){
             this.url = this.addHttpIfMissing(this.url);
             let app = this;
-            app.getAccountData(app.url,app.apikey)
-            .then(
-                function(data){
-                    console.log(data);
-                    app.summary();
-                }
-            ).catch(function(data){
-                console.log("Here's your problem:",data)
-                alert("an error has occured please check url and api key");
-
-            })
+            if (!app.getAccountData(app.url,app.apikey))
+                this.error = 'An error has occured, please check Url and API Key.';
+            else {
+                app.getAccountData(app.url,app.apikey)
+                .then(
+                    function(data){
+                        console.log("Here's your account: ",data);
+                        app.summary();
+                    }
+                ).catch(function(data){
+                    app.error = data;
+                    console.log("Here's your problem: ",data)
+                })
+            }
         },
         addHttpIfMissing(url){
             let regex = /^http:\/\//;
