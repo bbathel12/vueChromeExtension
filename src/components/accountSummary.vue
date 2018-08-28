@@ -1,17 +1,15 @@
 <template>
     <div id="container" >
         <div id="header">
-            <img src="./images/extension-icon.png"/> Monthly Network Stats
-            <span id="icon_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" style="float: right; mar
-            gin-top: 2px; cursor: pointer;" title="Settings"></span>
+            <img style="height: 20px; width:20px" src="./images/extension-icon-48x48.png"> Monthly Network Stats
+            <span id="icon_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" style="float: right; margin-top: 2px; cursor: pointer;" title="Settings"></span>
         </div>
         <div id="content" >
             <metric />
         </div>
         <div id="footer">
             <div id="network_name" v-text="networkName"></div>
-            <div id="network_login"><a href="" target="_blank" style="outline: none; color: black"><span id="icon_
-            info" class="glyphicon glyphicon-log-in" aria-hidden="true" style="cursor: pointer;" title="Login"></span></a></div>
+            <div id="network_login"><a href="" target="_blank" style="outline: none; color: black"><span id="icon_info" class="glyphicon glyphicon-log-in" aria-hidden="true" style="cursor: pointer;" title="Login"></span></a></div>
             <div id="last_update">Last Updated: <span id="last_update_timestamp" v-text="chosenAccount.timestamp"></span></div>
             <div class="clear_div"></div>
             <accountDropDown @linkfollow="getNewData"  />
@@ -27,7 +25,7 @@ import metric from "@/components/metric";
 import accountDropDown from "@/components/accountDropDown";
 import {dataGetter} from "@/datagetter/dataGetter";
 export default{
-    name:"summary",
+    name:"accountSummary",
     components:{metric,accountDropDown},
     mixins:[dataGetter],
     data(){

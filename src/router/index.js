@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/login'
 import Accounts from '@/components/accounts'
-import Summary from '@/components/summary'
+import Summary from '@/components/accountSummary'
 
 Vue.use(Router)
 
