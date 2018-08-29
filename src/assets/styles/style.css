@@ -63,7 +63,6 @@ body {
 }
 
 #footer > div[id=network_login] {
-    display: none;
     float: left;
     margin-left: 6px;
     margin-top: -2px;
@@ -78,6 +77,14 @@ body {
     font-weight: bold;
 }
 
+#footer > div[id=dropdown] {
+    float: left;
+    position: relative;
+    top: -5px;
+    font-size: 1.0em;
+    color: #000000;
+}
+
 #footer > div[id=general_info] {
     font-size: .8em;
     text-align: center;
@@ -90,7 +97,7 @@ body {
  */
 .metric {
     float: left;
-    height: 60px;
+    height: 65px;
     border-right: 4px solid #FFFFFF;
     border-bottom: 4px solid #FFFFFF;
 }
@@ -106,13 +113,13 @@ body {
  */
 .metric_small {
     width: 148px;
+    text-align: center;
 }
 
 .metric_small > div[class=metric_label] {
     color: #737D84;
     font-size: .9em;
     text-transform: uppercase;
-    text-align: center;
     margin-top: 3px;
 }
 
@@ -120,7 +127,6 @@ body {
     color: #000000;
     font-size: 1.3em;
     font-weight: bold;
-    text-align: center;
 }
 
 /**
@@ -130,20 +136,19 @@ body {
  */
 .metric_medium {
     width: 50%;
-    font-size: 1.5em;
-    padding-top: 13px;
     text-align: center;
 }
 
-.metric_medium > span[class=metric_label] {
-    font-size: .9em;
+.metric_medium > div[class=metric_label] {
     color: #737D84;
+    font-size: .9em;
     text-transform: uppercase;
+    margin-top: 3px;
 }
 
-.metric_medium > span[class=metric_value] {
-    font-size: .9em;
+.metric_medium > div[class=metric_value] {
     color: #000000;
+    font-size: 1.3em;
     font-weight: bold;
 }
 
@@ -154,20 +159,19 @@ body {
  */
 .metric_large {
     width: 100%;
-    font-size: 1.5em;
-    padding-top: 13px;
     text-align: center;
 }
 
-.metric_large > span[class=metric_label] {
-    font-size: .9em;
+.metric_large > div[class=metric_label] {
     color: #737D84;
+    font-size: .9em;
     text-transform: uppercase;
+    margin-top: 3px;
 }
 
-.metric_large > span[class=metric_value] {
-    font-size: .9em;
+.metric_large > div[class=metric_value] {
     color: #000000;
+    font-size: 1.3em;
     font-weight: bold;
 }
 
