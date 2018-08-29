@@ -8,7 +8,7 @@
             <metric />
         </div>
         <div id="footer">
-            <!--<div id="network_login"><a href="" target="_blank" style="outline: none; color: black"><span id="icon_info" class="glyphicon glyphicon-log-in" aria-hidden="true" style="cursor: pointer;" title="Login"></span></a></div>-->
+            <div id="network_login"><a href="" target="_blank" style="outline: none; color: black"><span id="icon_info" class="glyphicon glyphicon-log-in" aria-hidden="true" style="cursor: pointer;" title="Login"></span></a></div>
             <div id="last_update">Last Updated: <span id="last_update_timestamp" v-text="chosenAccount.timestamp"></span></div>
             <div id="dropdown"><accountDropDown @linkfollow="getNewData" /></div>
             <router-link to="/" text="login"><span class="glyphicon glyphicon-log-in" aria-hidden="true" style="cursor: pointer; left:8px; top: 0px;" title="Login"></router-link>

@@ -63,6 +63,7 @@ body {
 }
 
 #footer > div[id=network_login] {
+    display: none;
     float: left;
     margin-left: 6px;
     margin-top: -2px;
