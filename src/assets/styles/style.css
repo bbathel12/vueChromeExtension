@@ -50,6 +50,23 @@ body {
     margin-right: 10px;
 }
 
+.glyphicon.glyphicon-info-sign {
+    color:#606060;
+}
+
+.glyphicon.glyphicon-th {
+    color:#606060;
+}
+
+.glyphicon.glyphicon-plus {
+    cursor:pointer;
+    color:#317dcd;
+    float:right;
+    font-family:'Open Sans', sans-serif !important;
+    font-size: .8em;
+    font-weight: 800;
+}
+
 #footer {
     border-top: 1px solid #686868;
     height: 35px;
