@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/login'
 import Accounts from '@/components/accounts'
 import Summary from '@/components/accountSummary'
+import Settings from '@/components/settings'
+import Removed from '@/components/removed'
 
 Vue.use(Router)
 
@@ -12,7 +14,7 @@ export default new Router({
         {
             path: '/',
             name: 'Login',
-            component: Login
+            component:Login
         },
         {
             path:'/accounts/',
@@ -28,6 +30,21 @@ export default new Router({
             path:'/summary/',
             name:"Summary",
             component:Summary,
+        },
+        {
+            path: '/settings/',
+            name: 'Settings',
+            component:Settings
+        },
+        {
+            path:'/settings/:accountid',
+            name:"SettingsWId",
+            component:Settings,
+        },
+        {
+            path:'/removed/:accountid',
+            name:"RemovedWId",
+            component:Removed,
         },
     ]
 })

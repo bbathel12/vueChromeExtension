@@ -1,8 +1,8 @@
 <template>
     <div id="container" >
         <div id="header">
-            <img style="height: 20px; width:20px" src="./images/extension-icon-48x48.png"> Monthly Network Stats
-            <span id="icon_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" style="float: right; margin-top: 2px; cursor: pointer;" title="Settings"></span>
+            <img style="height: 20px; width:20px" src="./images/extension-icon-48x48.png"> Monthly Account Stats
+            <router-link :to="{ name: 'SettingsWId', params: { accountid: chosenAccount.apikey}}" text="settings"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="float: right; margin-top: 2px; cursor: pointer;" title="Settings"></span></router-link>
         </div>
         <div id="content" >
             <metric />
