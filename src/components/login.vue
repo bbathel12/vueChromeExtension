@@ -63,19 +63,20 @@ export default{
     mixins:[dataGetter],
     methods:{
         accountSummaryButton(){
-            if (localStorage.getItem("accounts") == null) {
+            if (localStorage.getItem("accounts") == null || localStorage.getItem("accounts") == '{}') {
                 this.error = 'There are no available accounts.';
             }
             else
                 this.$router.push("/summary/");
         },
         saveLogin(event){
+            this.method = 'save';
             this.url = this.addHttpIfMissing(this.url);
             let app = this;
-            if (!app.getAccountData(app.url,app.apikey))
+            if (!app.getAccountData(app.url,app.apikey,this.method))
                 this.error = 'An error has occured, please check Url and API Key.';
             else {
-                app.getAccountData(app.url,app.apikey)
+                app.getAccountData(app.url,app.apikey,this.method)
                 .then(
                     function(data){
                         console.log("Here's your account: ",data);

@@ -7,7 +7,7 @@ export const dataGetter = {
         }
     },
     methods:{
-        getAccountData(apiUrl,apiKey) {
+        getAccountData(apiUrl,apiKey,method) {
             if(apiUrl == undefined || apiKey == undefined || apiUrl == 'http://' || apiKey == ''){
                 return false;
             }
@@ -29,8 +29,14 @@ export const dataGetter = {
                     apiUrl+"/"+app.endpoint,
                     body
                 ).then( function(response){
-                    if (response.data.length != 2){
+                    if (response.data.length != 2 && method == 'save'){
                         app.saveAccountData({
+                            'apikey':apiKey,
+                            'url':apiUrl,
+                        },response.data);
+                        resolve(response.data);
+                    } else if (response.data.length != 2 && method == 'remove'){
+                       app.removeAccountData({
                             'apikey':apiKey,
                             'url':apiUrl,
                         },response.data);
@@ -46,14 +52,21 @@ export const dataGetter = {
         getData(){
             // get proper account
             let accounts   = this.allAccounts();
+            this.method = 'save';
             for(let accountid in accounts){
                 let _account = accounts[accountid]
-                this.getAccountData(_account.url,_account.apikey);
+                this.getAccountData(_account.url,_account.apikey,this.method);
             }
         },
         saveAccountData(account,data){
             this.$store.commit(
                 "addAccount",
+                Object.assign(account,data)
+            );
+        },
+        removeAccountData(account,data){
+            this.$store.commit(
+                "removeAccount",
                 Object.assign(account,data)
             );
         },
@@ -79,6 +92,7 @@ export const dataGetter = {
         },
         allNamedAccounts(){
             let accounts = this.allAccounts();
+            console.log(accounts);
             let clean = [];
             for(let account in accounts){
                 if( accounts[account] != undefined){

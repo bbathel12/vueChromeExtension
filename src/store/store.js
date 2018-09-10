@@ -17,7 +17,13 @@ export const store = new Vuex.Store({
             );
         },
         removeAccount(state,account){
-            delete(state.accounts[account.apikey]);
+            const accounts = JSON.parse(localStorage.getItem('accounts'));
+            delete accounts[account.apikey];
+            localStorage.setItem(
+                "accounts",
+                JSON.stringify(accounts)
+            );
+            // window.close();
         }
     },
     getters:{
