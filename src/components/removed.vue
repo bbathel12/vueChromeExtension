@@ -23,7 +23,7 @@
 import axios from "axios"
 import {dataGetter} from "@/datagetter/dataGetter";
 export default{
-    name:"accountSummary",
+    name:"removed",
     mixins:[dataGetter],
     data(){
         return{

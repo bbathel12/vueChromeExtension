@@ -30,7 +30,9 @@
                     <tr class="settingsRemoveAccount">
                         <td></td>
                         <td>
-                            <router-link :to="{ name: 'RemovedWId', params: { accountid: chosenAccount.apikey}}" text="delete_account"><span class="glyphicon glyphicon-trash" aria-hidden="true" style="margin-top: 2px; cursor: pointer;"></span> Remove Account</router-link>
+                            <!--<router-link :to="{ name: 'RemovedWId', params: { accountid: chosenAccount.apikey}}" text="delete_account"><span class="glyphicon glyphicon-trash" aria-hidden="true" style="margin-top: 2px; cursor: pointer;"></span> Remove Account</router-link>-->
+                            <router-link @click.native="remove($event, chosenAccount.url_login, chosenAccount.apikey)" :to="{ name: 'RemovedWId', params: { accountid: chosenAccount.apikey}}"><span class="glyphicon glyphicon-trash" aria-hidden="true" style="margin-top: 2px; cursor: pointer;"></span> Remove Account</router-link>
+                            <!--<button v-on:click="remove($event, chosenAccount.url_login, chosenAccount.apikey)" id="button_remove"  class="btn btn-default" style="float: right;">Remove Account</button>-->
                         </td>
                     </tr>
                 </table>
@@ -59,6 +61,11 @@ export default{
     methods:{
         getNewData(){
             this.getData();
+        },
+        remove: function(event, url, apikey){
+            this.method = 'remove';
+            let app = this;
+            app.getAccountData(url,apikey,this.method);
         }
     },
     computed:{
