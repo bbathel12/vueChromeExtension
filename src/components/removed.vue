@@ -7,10 +7,9 @@
         <div id="content" >
             <div id="settings" class="text-center" style="margin-left: -4px;">
                 <h3 style="color:#1173BD;"><span v-text="chosenAccount.network_name"></span></h3>
-                {{chosenAccount}}
                 <h4>has been removed</h4>
                 <h3>
-                <router-link @click.native="remove(chosenAccount, $event)" to="/summary/" text="summary"><span class="glyphicon glyphicon-th" aria-hidden="true" style="margin-top: 2px; cursor: pointer;" title="Summary"></span></router-link>
+                <span @click="remove($event,chosenAccount)" ><span class="glyphicon glyphicon-th" aria-hidden="true" style="margin-top: 2px; cursor: pointer;" title="Summary"></span>
                     <!--<router-link @click.native="close" to="/"><span style="font-size:17px; font-weight:500; color:#2498EF;">Extension must be restarted in order for the changes to take effect</span></router-link>-->
                 </h3>
             </div>
@@ -39,10 +38,14 @@ export default{
         close(){
             window.close();
         },
-        remove(account, event){
-            console.log('2 removed ',account);
+        remove(e,account){
+            window.alert(account.apikey);
             this.removeAccountData(account);
-            console.log('3 removed ',account);
+            this.$router.push(
+                {
+                    name:"Summary"
+                }
+            );
         },
     },
     computed:{
