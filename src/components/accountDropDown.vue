@@ -1,6 +1,6 @@
 <template>
     <span>
-        <select @change="followLink" >
+        <select @change="followLink" class="form-control">
             <option
                 v-for="account in allNamedAccounts"
                 v-if="account.network_name != undefined"
