@@ -115,7 +115,8 @@ export default{
                         if (response){
                             app.url = response.affiliateurl
                             app.apikey = response.apikey
-                        }
+                        } else
+                            app.error = 'Go to your affiliate site.';
                     }
                 );
             });

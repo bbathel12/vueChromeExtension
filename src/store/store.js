@@ -23,7 +23,6 @@ export const store = new Vuex.Store({
                 "accounts",
                 JSON.stringify(accounts)
             );
-            // window.close();
         }
     },
     getters:{

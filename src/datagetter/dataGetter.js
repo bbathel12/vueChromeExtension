@@ -92,7 +92,6 @@ export const dataGetter = {
         },
         allNamedAccounts(){
             let accounts = this.allAccounts();
-            console.log(accounts);
             let clean = [];
             for(let account in accounts){
                 if( accounts[account] != undefined){
