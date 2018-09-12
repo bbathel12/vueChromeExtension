@@ -11,7 +11,7 @@
             <div id="network_login"><a href="" target="_blank" style="outline:none; color:black; padding-top:5px;"><span id="icon_info" class="glyphicon glyphicon-log-in" aria-hidden="true" style="cursor: pointer;" title="Login"></span></a></div>
             <div id="last_update" style="padding-top:5px;">Last Updated: <span id="last_update_timestamp" style="padding-top:5px;" v-text="chosenAccount.timestamp"></span></div>
             <div id="dropdown"><accountDropDown @linkfollow="getNewData" /></div>
-            <router-link to="/" text="login"><span class="glyphicon glyphicon-log-in" aria-hidden="true" style="cursor:pointer; left:8px; top:0px; padding-top:5px;" title="Login"></router-link>
+            <router-link to="/" text="login"><span class="glyphicon glyphicon-log-in" aria-hidden="true" style="cursor:pointer; left:48px; top:0px; padding-top:5px;" title="Login"></router-link>
         </div>
         
     </div>
