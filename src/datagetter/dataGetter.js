@@ -51,7 +51,7 @@ export const dataGetter = {
         },
         getData(){
             // get proper account
-            let accounts   = this.allAccounts();
+            let accounts = this.allAccounts();
             this.method = 'save';
             for(let accountid in accounts){
                 let _account = accounts[accountid]
@@ -64,10 +64,10 @@ export const dataGetter = {
                 Object.assign(account,data)
             );
         },
-        removeAccountData(account,data){
+        removeAccountData(account){
             this.$store.commit(
                 "removeAccount",
-                Object.assign(account,data)
+                account
             );
         },
         allAccounts(){
