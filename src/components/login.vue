@@ -72,9 +72,14 @@ export default{
         saveLogin(event){
             this.method = 'save';
             this.url = this.addHttpIfMissing(this.url);
+            let accounts = '';
             let app = this;
+            if (localStorage.getItem('accounts') != null && localStorage.getItem("accounts") != '{}')
+                accounts = JSON.parse(localStorage.getItem('accounts'));
             if (!app.getAccountData(app.url,app.apikey,this.method))
                 this.error = 'An error has occured, please check Url and API Key.';
+            else if (accounts[app.apikey] != undefined)
+                this.error = 'Account already exists.';
             else {
                 app.getAccountData(app.url,app.apikey,this.method)
                 .then(
