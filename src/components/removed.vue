@@ -33,12 +33,9 @@ export default{
         getNewData(){
             this.getData();
         },
-        close(){
-            window.close();
-        },
         remove(e,account,page){
             this.removeAccountData(account);
-            if (page == 'summary'){
+            if (page == 'summary' && localStorage.getItem("accounts") != '{}' && localStorage.getItem("accounts") != null){
                 this.$router.push(
                     {
                         name:"Summary"
