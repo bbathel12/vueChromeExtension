@@ -14,7 +14,7 @@
             </div>
         </div>
         <div id="footer" style="text-align:center;">
-            <span @click="remove($event,chosenAccount,'login')"><span class="glyphicon glyphicon-plus" aria-hidden="true"> Add New Account</span></span>
+            <span @click="remove($event,chosenAccount,'login')"><span class="glyphicon glyphicon-plus" aria-hidden="true"> Add New Account</span>
         </div>
     </div>
 </template>
