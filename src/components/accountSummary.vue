@@ -36,8 +36,6 @@ export default{
         }
     },
     beforeMount(){
-        console.log('mount');
-        console.log('mount: ',this.allNamedAccounts.length);
         if (this.allNamedAccounts.length == 0){
             this.$router.push({name:'Login'});
         }
