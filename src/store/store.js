@@ -18,7 +18,6 @@ export const store = new Vuex.Store({
         },
         removeAccount(state,account){
             const accounts = JSON.parse(localStorage.getItem('accounts'));
-            console.log('store ',account);
             delete accounts[account.apikey];
             localStorage.setItem(
                 "accounts",

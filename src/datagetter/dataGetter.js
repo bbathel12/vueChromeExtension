@@ -65,7 +65,6 @@ export const dataGetter = {
             );
         },
         removeAccountData(account){
-            console.log('dataGetter ',account);
             this.$store.commit(
                 "removeAccount",
                 account
