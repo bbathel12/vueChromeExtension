@@ -96,6 +96,7 @@ body {
 }
 
 #footer > div[id=dropdown] {
+    width: 30%;
     float: left;
     position: relative;
     top: -5px;

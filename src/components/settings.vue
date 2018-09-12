@@ -40,7 +40,7 @@
         </div>
         <div id="footer">
             <div id="dropdown"><accountDropDownSettings @linkfollow="getNewData" /></div>
-            <router-link to="/" text="add_new_account"><span class="glyphicon glyphicon-plus" style="padding-top: 5px;" aria-hidden="true"> Add New Account</span></router-link>
+            <router-link to="/login" text="add_new_account"><span class="glyphicon glyphicon-plus" style="padding-top: 5px;" aria-hidden="true"> Add New Account</span></router-link>
         </div>
         
     </div>

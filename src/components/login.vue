@@ -38,7 +38,7 @@
 
             </div>
             <div id="footer">
-                <div id="general_info">For assistance logging in, please click the <img src="./images/icon_gear.png"/> gear icon in your footer.</div>
+                <div id="general_info">For assistance logging in, please click the <img src="./images/icon_gear.png"/> gear icon in your Affiliate portal footer.</div>
                 <div class="clear_div"></div>
             </div>
         </div>
@@ -67,7 +67,7 @@ export default{
                 this.error = 'There are no available accounts.';
             }
             else
-                this.$router.push("/summary/");
+                this.$router.push("/");
         },
         saveLogin(event){
             this.method = 'save';
@@ -103,7 +103,7 @@ export default{
             })
         },
         summary(){
-            this.$router.push("/summary/");
+            this.$router.push("/");
         },
         importCreds(){
             let app = this;
@@ -116,7 +116,7 @@ export default{
                             app.url = response.affiliateurl
                             app.apikey = response.apikey
                         } else
-                            app.error = 'Go to your affiliate site.';
+                            app.error = 'Go to your Affiliate portal.';
                     }
                 );
             });
