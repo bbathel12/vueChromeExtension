@@ -4,7 +4,7 @@
             <option
                 v-for="account in allNamedAccounts"
                 v-if="account.network_name != undefined"
-                :selected="(account.apikey == chosenAccount.apikey)?'':'selected'"
+                :selected ="selected(account.apikey)"
                 :value="account.apikey"
                 v-text="account.network_name">
             </option>
@@ -32,6 +32,13 @@ export default{
                 }
             );
             this.$emit('linkfollow');
+        },
+        selected(apikey){
+            if (this.chosenAccount.apikey == apikey){
+                return "selected";
+            }else{
+                return "";
+            }
         },
     },
 }
