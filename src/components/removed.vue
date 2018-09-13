@@ -2,19 +2,19 @@
     <div id="container" >
         <div id="header">
             <img style="height: 20px; width:20px" src="./images/extension-icon-48x48.png"/> Account Removed
-            <span @click="remove($event,chosenAccount,'summary')"><span class="glyphicon glyphicon-th" aria-hidden="true" style="float: right; margin-top: 2px; cursor: pointer;" title="Summary"></span>
+            <span @click="remove($event,chosenAccount,'summary')"><span class="glyphicon glyphicon-th" aria-hidden="true" style="float: right; margin-top: 2px; cursor: pointer;" title="Summary"></span></span>
         </div>
         <div id="content" >
             <div id="settings" class="text-center" style="margin-left: -4px;">
                 <h3 style="color:#1173BD;"><span v-text="chosenAccount.network_name"></span></h3>
                 <h4>has been removed</h4>
                 <h3>
-                    <span @click="remove($event,chosenAccount,'summary')"><span class="glyphicon glyphicon-th" aria-hidden="true" style="margin-top: 2px; cursor: pointer;" title="Summary"></span>
+                    <span @click="remove($event,chosenAccount,'summary')"><span class="glyphicon glyphicon-th" aria-hidden="true" style="margin-top: 2px; cursor: pointer;" title="Summary"></span></span>
                 </h3>
             </div>
         </div>
         <div id="footer" style="text-align:center;">
-            <span @click="remove($event,chosenAccount,'login')"><span class="glyphicon glyphicon-plus" aria-hidden="true"> Add New Account</span>
+            <span @click="remove($event,chosenAccount,'login')"><span class="glyphicon glyphicon-plus" aria-hidden="true"> Add New Account</span></span>
         </div>
     </div>
 </template>
