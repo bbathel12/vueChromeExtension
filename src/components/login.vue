@@ -94,7 +94,7 @@ export default{
             }
         },
         addHttpIfMissing(url){
-            let regex = /^http:\/\//;
+            let regex = /^https?:\/\//;
             if (!regex.test(url))
                 return "http://"+url;
             else
